@@ -46,6 +46,9 @@ class MessageController extends Controller
             'message' => $request->input('new_message'),
         ]);
 
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         return redirect()->route('message.show', $receiverID);
     }
 
@@ -55,6 +58,9 @@ class MessageController extends Controller
      */
     public function show(string $id)
     {
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         $currentUserID = Auth::user()->id;
         $friend = User::findOrFail($id);
 

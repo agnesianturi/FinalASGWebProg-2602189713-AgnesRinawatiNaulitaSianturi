@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class RequestsController extends Controller
 {
@@ -17,10 +18,10 @@ class RequestsController extends Controller
         $requests = Requests::where('requests.receiver_id', '=', $currentUser)->where('requests.status', '=', 'Pending')->join('users', 'users.id', '=', 'requests.sender_id')
         ->get(['requests.id as request_id', 'users.*']);
 
-        return view('requests', compact('requests'));
-
         $loc = session()->get('locale');
         App::setLocale($loc);
+
+        return view('requests', compact('requests'));
     }
 
     /**
@@ -36,9 +37,6 @@ class RequestsController extends Controller
      */
     public function store(Request $request)
     {
-        $loc = session()->get('locale');
-        App::setLocale($loc);
-
         $sender_id = Auth::user()->id;
         $receiver_id = $request->input('receiver_id');
 
@@ -48,6 +46,8 @@ class RequestsController extends Controller
         ]);
 
         if($requests){
+            $loc = session()->get('locale');
+            App::setLocale($loc);
             return redirect()->route('user.index')->with('success', 'Friend Request Sent');
         };
 

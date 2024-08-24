@@ -36,6 +36,11 @@ Route::post('/keepToWallet', [AuthenticationController::class, 'keepToWallet'])-
 
 Route::get('/', [UserController::class, 'index'])->name('user.index');
 
+Route::get('/locale/{loc}', function ($loc) {
+    Session::put('locale', $loc);
+    return redirect()->back();
+})->name('locale');
+
 Route::middleware(['auth', 'paid'])->group(function () {
 
     Route::resource('user', UserController::class);
@@ -47,10 +52,5 @@ Route::middleware(['auth', 'paid'])->group(function () {
     Route::get('/user/{id}', [UserController::class, 'profile'])->name('profile');
 
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
-
-    Route::get('/locale/{loc}', function ($loc) {
-        Session::put('locale', $loc);
-        return redirect()->back();
-    })->name('locale');
 
 });
