@@ -47,4 +47,10 @@ Route::middleware(['auth', 'paid'])->group(function () {
     Route::get('/user/{id}', [UserController::class, 'profile'])->name('profile');
 
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+
+    Route::get('/locale/{loc}', function ($loc) {
+        Session::put('locale', $loc);
+        return redirect()->back();
+    })->name('locale');
+
 });

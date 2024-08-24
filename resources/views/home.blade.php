@@ -6,16 +6,16 @@
 
 @section('content')
         <div class="title-area">
-            <h3>Find Your Friends</h3>
+            <h3>@lang('translation.Find Your Friends')</h3>
         </div>
 
         <form method="GET" action="{{ route('user.index') }}">
             <div class="mb-5" style="display: flex; justify-content:center; align-items:center">
                 <div class="" style="display:flex; justify-content:center; align-items:center; margin-right:1rem">
-                    <input type="text" class="form-control" style="width: 30rem" id="search" name="search" placeholder="Search here" value="{{ request('search') }}">
+                    <input type="text" class="form-control" style="width: 30rem" id="search" name="search" placeholder="@lang('translation.Search here')" value="{{ request('search') }}">
                 </div>
                 <div class="">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary">@lang('translation.Search')</button>
                 </div>
             </div>
         </form>

@@ -67,6 +67,9 @@ class NotificationController extends Controller
             return response()->json(['success' => true]);
         }
 
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         return redirect()->back();
     }
 }

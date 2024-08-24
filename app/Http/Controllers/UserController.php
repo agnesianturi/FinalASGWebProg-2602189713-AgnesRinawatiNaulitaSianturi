@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
 class UserController extends Controller
 {
@@ -37,13 +38,17 @@ class UserController extends Controller
             $searchTerm = $request->input('search');
         }
 
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         return view('home', compact('allUsers'));
     }
 
     public function profile(){
         $user = User::findOrFail(Auth::user()->id);
 
-        dd($user);
+        $loc = session()->get('locale');
+        App::setLocale($loc);
 
         return view('profile', compact('user'));
     }

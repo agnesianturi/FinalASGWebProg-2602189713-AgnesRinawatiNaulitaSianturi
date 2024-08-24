@@ -6,7 +6,7 @@
 
 @section('content')
         <div class="title-area">
-            <h3>People Who Like Your Profile</h3>
+            <h3>@lang('translation.People Who Like Your Profile')</h3>
         </div>
 
         <div class="home-area">

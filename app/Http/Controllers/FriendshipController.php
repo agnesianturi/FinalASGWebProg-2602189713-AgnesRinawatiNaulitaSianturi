@@ -7,6 +7,7 @@ use App\Models\Requests;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class FriendshipController extends Controller
 {
@@ -18,6 +19,9 @@ class FriendshipController extends Controller
         $currentUser = Auth::user()->id;
         $allFriends = Friendship::where('user_id', '=', $currentUser)->join('users', 'users.id', '=', 'friendships.friend_id')
         ->get(['users.*']);
+
+        $loc = session()->get('locale');
+        App::setLocale($loc);
 
         return view('friends', compact('allFriends'));
     }
@@ -52,6 +56,9 @@ class FriendshipController extends Controller
         $updateRequest = Requests::find($request_id);
         $updateRequest->status = 'accepted';
         $updateRequest->save();
+
+        $loc = session()->get('locale');
+        App::setLocale($loc);
 
         return redirect()->route('requests.index')->with('success', 'Friend request accepted');
         

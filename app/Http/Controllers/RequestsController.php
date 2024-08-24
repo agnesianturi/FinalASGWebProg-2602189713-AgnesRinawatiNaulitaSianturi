@@ -18,6 +18,9 @@ class RequestsController extends Controller
         ->get(['requests.id as request_id', 'users.*']);
 
         return view('requests', compact('requests'));
+
+        $loc = session()->get('locale');
+        App::setLocale($loc);
     }
 
     /**
@@ -33,6 +36,9 @@ class RequestsController extends Controller
      */
     public function store(Request $request)
     {
+        $loc = session()->get('locale');
+        App::setLocale($loc);
+
         $sender_id = Auth::user()->id;
         $receiver_id = $request->input('receiver_id');
 

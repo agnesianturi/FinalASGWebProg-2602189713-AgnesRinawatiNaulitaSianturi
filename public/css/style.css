@@ -76,6 +76,11 @@
     color: black;
 }
 
+.dropdown-item-lang{
+    color: black;
+    width: 1rem;
+}
+
 .card{
     width: 20vw;
     margin-left: 3rem;

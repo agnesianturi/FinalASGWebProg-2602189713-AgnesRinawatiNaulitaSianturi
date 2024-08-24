@@ -6,7 +6,7 @@
 
 @section('content')
         <div class="title-area">
-            <h3>My Friends</h3>
+            <h3>@lang('translation.My Friends')</h3>
         </div>
 
         <div class="home-area">
