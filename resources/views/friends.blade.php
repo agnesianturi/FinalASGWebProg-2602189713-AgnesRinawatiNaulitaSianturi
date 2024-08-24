@@ -5,6 +5,11 @@
 @section('activeFriends', 'active')
 
 @section('content')
+
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        
         <div class="title-area">
             <h3>@lang('translation.My Friends')</h3>
         </div>

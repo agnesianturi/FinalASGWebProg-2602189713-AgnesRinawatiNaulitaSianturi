@@ -5,6 +5,36 @@
 @section('activeHome', 'active')
 
 @section('content')
+
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        <div class="container" style="padding: 2rem">
+            <h5>Notifications</h5>
+            <div class="alert alert-info">
+                <ul class="list-unstyled mb-0">
+                    @forelse (Auth::user()->notifications as $notification)
+                        <li>
+                            {{ $notification->data['message'] }}
+                            <a href="{{ route('notifications.destroy', $notification->id) }}" class="btn btn-danger btn-sm ms-2"
+                                onclick="event.preventDefault(); document.getElementById('delete-form-{{ $notification->id }}').submit();">
+                                <i class="icon-close"></i>
+                            </a>
+    
+                            <form id="delete-form-{{ $notification->id }}"
+                                action="{{ route('notifications.destroy', $notification->id) }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </li>
+                    @empty
+                        <li>No Notifications</li>
+                    @endforelse
+                </ul>
+            </div>
+
         <div class="title-area">
             <h3>@lang('translation.Find Your Friends')</h3>
         </div>

@@ -5,6 +5,10 @@
 @section('title', 'Requests Page')
 
 @section('content')
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        
         <div class="title-area">
             <h3>@lang('translation.People Who Like Your Profile')</h3>
         </div>
