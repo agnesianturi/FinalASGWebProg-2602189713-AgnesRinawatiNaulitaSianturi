@@ -15,10 +15,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $currentUser = Auth::user()->id;
+
+        $searchTerm = $request->input('search');
+        $selectedGender = $request->input('gender');
+        $selectedFields = $request->input('fields');
+
+        $query = User::query();
+
         if(Auth::check()){
-            $currentUser = Auth::user()->id;
-    
-            $searchTerm = $request->input('search');
     
             $sentRequest = DB::table('requests')
                 ->where('sender_id', '=', $currentUser)->pluck('receiver_id');
@@ -26,17 +31,25 @@ class UserController extends Controller
             $friendUser = DB::table('friendships')
                 ->where('user_id', '=', $currentUser)->pluck('friend_id');
     
-            $allUsers = User::whereNotIn('id', $sentRequest)
+            $query->whereNotIn('id', $sentRequest)
                 ->whereNotIn('id', $friendUser)
-                ->where('id', '!=', $currentUser)
-                ->when($searchTerm, function ($query, $searchTerm) {
-                    return $query->where('name', 'like', '%' . $searchTerm . '%');
-                })
-                ->get();
-        }else{
-            $allUsers = User::all();
-            $searchTerm = $request->input('search');
+                ->where('id', '!=', $currentUser);
+            
         }
+
+        if ($searchTerm) {
+            $query->where('name', 'like', '%' . $searchTerm . '%');
+        }
+    
+        if ($selectedGender) {
+            $query->where('gender', $selectedGender);
+        }
+    
+        if ($selectedFields) {
+            $query->where('fieldsOfWork', $selectedFieldsOfWork);
+        }
+
+        $allUsers = $query->get();
 
         $loc = session()->get('locale');
         App::setLocale($loc);
@@ -45,10 +58,12 @@ class UserController extends Controller
     }
 
     public function profile(){
-        $user = User::findOrFail(Auth::user()->id);
+        // $user = User::findOrFail(Auth::user()->id);
 
-        $loc = session()->get('locale');
-        App::setLocale($loc);
+        // $loc = session()->get('locale');
+        // App::setLocale($loc);
+
+        $user = Auth::user();
 
         return view('profile', compact('user'));
     }

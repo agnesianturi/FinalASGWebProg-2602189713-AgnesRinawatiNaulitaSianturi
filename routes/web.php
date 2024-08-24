@@ -49,7 +49,7 @@ Route::middleware(['auth', 'paid'])->group(function () {
 
     Route::resource('message', MessageController::class);
 
-    Route::get('/user/{id}', [UserController::class, 'profile'])->name('profile');
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
     Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
 

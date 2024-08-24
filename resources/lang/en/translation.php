@@ -11,6 +11,11 @@
         'My Friends' => 'My Friends',
         'My Profile' => 'My Profile',
         'Log Out' => 'Log Out',
+        'Message' => 'Message',
+        'Male' => 'Male',
+        'Female' => 'Female',
+        'Gender' => 'Gender',
+        'Fields' => 'Fields'
 
     ]
 

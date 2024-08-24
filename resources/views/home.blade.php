@@ -9,16 +9,48 @@
             <h3>@lang('translation.Find Your Friends')</h3>
         </div>
 
-        <form method="GET" action="{{ route('user.index') }}">
-            <div class="mb-5" style="display: flex; justify-content:center; align-items:center">
-                <div class="" style="display:flex; justify-content:center; align-items:center; margin-right:1rem">
-                    <input type="text" class="form-control" style="width: 30rem" id="search" name="search" placeholder="@lang('translation.Search here')" value="{{ request('search') }}">
+        <div class="search-area" style="display: flex; justify-content: center;">
+            <form method="GET" action="{{ route('user.index') }}">
+                <div class="mb-5" style="display: flex; justify-content:center; align-items:center">
+                    
+                    <div class="mr-3">
+                        <!-- Dropdown Filter -->
+                        <select name="gender" class="form-select" style="margin-right: 2rem; height:2.3rem">
+                            <option value="">@lang('translation.Gender')</option>
+                            <option value="Male">@lang('translation.Male')</option>
+                            <option value="Female">@lang('translation.Female')</option>
+                        </select>
+                    </div>
+
+                    <div class="mr-3">
+                        <!-- Dropdown Filter -->
+                        <select name="fieldsOfWork" class="form-select" style="margin-right: 2rem; height: 2.3rem;">
+                            <option value="">@lang('translation.Fields')</option>
+                            <!-- Replace the following options with dynamic fields from your database if necessary -->
+                            <option value="Business & Management">Business & Management</option>
+                            <option value="Food & Beverages">Food & Beverages</option>
+                            <option value="Science & Technology">Science & Technology</option>
+                            <option value="Education">Education</option>
+                            <option value="Entertainment & Arts">Entertainment & Arts</option>
+                            <option value="Law & Politic">Law & Politic</option>
+                            <option value="Finance & Consulting">Finance & Consulting</option>
+                        </select>
+                    </div>
+
+                    <div class="" style="display:flex; justify-content:center; align-items:center; margin-right:1rem">
+                        <input type="text" class="form-control" style="width: 30rem" id="search" name="search" placeholder="@lang('translation.Search here')" value="{{ request('search') }}">
+                    </div>
+
+                    <div class="">
+                        <button type="submit" class="btn btn-primary">@lang('translation.Search')</button>
+                    </div>
                 </div>
-                <div class="">
-                    <button type="submit" class="btn btn-primary">@lang('translation.Search')</button>
-                </div>
-            </div>
-        </form>
+            </form>
+
+            
+        </div>
+
+
 
 
         <div class="home-area">

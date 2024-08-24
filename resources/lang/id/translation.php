@@ -11,6 +11,11 @@
         'My Friends' => 'Teman Saya',
         'My Profile' => 'Profil Saya',
         'Log Out' => 'Keluar',
+        'Message' => 'Pesan',
+        'Male' => 'Pria',
+        'Female' => 'Wanita',
+        'Gender' => 'Jenis Kelamin',
+        'Fields' => 'Bidang',
     ]
 
 ?>

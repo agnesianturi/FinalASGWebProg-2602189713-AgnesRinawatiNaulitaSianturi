@@ -41,7 +41,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownProfile">
                         <li>
-                            <form method="GET" action="{{ route('profile', ['id' => Auth::user()->id]) }}">
+                            <form method="GET" action="{{ route('profile') }}">
                                 @csrf
                                 <button type="submit" class="dropdown-item" style="background-color: none; border:none; text-align:left">
                                     @lang('translation.My Profile')
