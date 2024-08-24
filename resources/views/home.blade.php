@@ -12,6 +12,7 @@
 
         <div class="container" style="padding: 2rem">
             <h5>Notifications</h5>
+            @auth
             <div class="alert alert-info">
                 <ul class="list-unstyled mb-0">
                     @forelse (Auth::user()->notifications as $notification)
@@ -34,6 +35,9 @@
                     @endforelse
                 </ul>
             </div>
+            @else
+                <p>You need to log in to see notifications</p>
+            @endauth
 
         <div class="title-area">
             <h3>@lang('translation.Find Your Friends')</h3>

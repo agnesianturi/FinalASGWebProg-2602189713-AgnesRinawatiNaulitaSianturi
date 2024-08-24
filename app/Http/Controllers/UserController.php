@@ -15,7 +15,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $currentUser = Auth::user()->id;
 
         $searchTerm = $request->input('search');
         $selectedGender = $request->input('gender');
@@ -24,6 +23,8 @@ class UserController extends Controller
         $query = User::query();
 
         if(Auth::check()){
+
+            $currentUser = Auth::user()->id;
     
             $sentRequest = DB::table('requests')
                 ->where('sender_id', '=', $currentUser)->pluck('receiver_id');
