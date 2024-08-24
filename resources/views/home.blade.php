@@ -24,7 +24,7 @@
 
                     <div class="mr-3">
                         <!-- Dropdown Filter -->
-                        <select name="fieldsOfWork" class="form-select" style="margin-right: 2rem; height: 2.3rem;">
+                        <select name="fields" class="form-select" style="margin-right: 2rem; height: 2.3rem;">
                             <option value="">@lang('translation.Fields')</option>
                             <!-- Replace the following options with dynamic fields from your database if necessary -->
                             <option value="Business & Management">Business & Management</option>

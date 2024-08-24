@@ -46,7 +46,7 @@ class UserController extends Controller
         }
     
         if ($selectedFields) {
-            $query->where('fieldsOfWork', $selectedFieldsOfWork);
+            $query->where('fieldsOfWork', 'like', '%' . $selectedFields  . '%');
         }
 
         $allUsers = $query->get();
